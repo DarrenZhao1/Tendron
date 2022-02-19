@@ -17,3 +17,24 @@ class Tendril
     myY = y;
     myAngle = theta;
   }
+  public void show()
+  {
+
+    double endX= myX;
+    double endY= myY;
+    double startX = myX;
+    double startY = myY;
+    stroke((int)endX - (float)(Math.random()*500), (int)endY - (float)(Math.random()*600), (float)(Math.random()*255));
+    for (int i = 0; i < myNumSegments; i++) {
+      myAngle += ((Math.random()*41-20)/100);
+      endX = startX + Math.cos(myAngle) *SEG_LENGTH;
+      endY = startY + Math.sin(myAngle) * SEG_LENGTH;
+      line((float)startX, (float)startY, (float)endX, (float)endY);
+      startX = endX;
+      startY = endY;
+    }
+    if (myNumSegments >= 4) {
+      Cluster c = new Cluster(myNumSegments/3, (int)endX, (int)endY);
+    }
+  }
+}
